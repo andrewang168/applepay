@@ -27,11 +27,11 @@ var applePayController = (function (uiController) {
       acceptedCardSchemes: ['amex', 'masterCard', 'maestro', 'visa', 'mada']
     },
     shop: {
-      product_price: 10.0,
-      shop_name: 'Demo Shop',
+      product_price: 199.0,
+      shop_name: 'INSTO Store',
       shop_localisation: {
-        currencyCode: 'GBP',
-        countryCode: 'GB'
+        currencyCode: 'USD',
+        countryCode: 'US'
       }
     },
     shipping: {
