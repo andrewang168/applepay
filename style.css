@@ -36,10 +36,6 @@ body {
 	-apple-pay-button-type: book;
 }
 
-.apple-pay-button-text-buy {
-	-apple-pay-button-type: buy;
-}
-
 .apple-pay-button-text-check-out {
 	-apple-pay-button-type: check-out;
 }
