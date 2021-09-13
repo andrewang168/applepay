@@ -27,7 +27,7 @@ var applePayController = (function (uiController) {
       acceptedCardSchemes: ['amex', 'masterCard', 'maestro', 'visa', 'mada']
     },
     shop: {
-      product_price: 199.0,
+      product_price: 1.99,
       shop_name: 'INSTO Store',
       shop_localisation: {
         currencyCode: 'USD',
@@ -266,19 +266,19 @@ var applePayController = (function (uiController) {
             'supportsDebit'
           ],
           supportedNetworks: config.payments.acceptedCardSchemes,
-          shippingType: 'shipping',
-          requiredBillingContactFields: [
-            'postalAddress',
-            'name',
-            'phone',
-            'email'
-          ],
-          requiredShippingContactFields: [
-            'postalAddress',
-            'name',
-            'phone',
-            'email'
-          ],
+          // shippingType: 'shipping',
+          // requiredBillingContactFields: [
+          //   'postalAddress',
+          //   'name',
+          //   'phone',
+          //   'email'
+          // ],
+          // requiredShippingContactFields: [
+          //   'postalAddress',
+          //   'name',
+          //   'phone',
+          //   'email'
+          // ],
           total: {
             label: config.shop.shop_name,
             amount: config.shop.product_price,
