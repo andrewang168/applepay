@@ -1,10 +1,22 @@
 const express = require('express')
 const axios = require('axios')
 const https = require('https')
+const request = require('request')
 const bodyParser = require('body-parser')
 const fs = require('fs')
+// const certFile = fs.readFileSync('./certificates/applePayCert.pem')
+const path = require('path')
+const certFile = path.resolve('./certificates/Certificates.p12')
 const cors = require('cors')
 const app = express()
+
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type,X-XSRF-Token,X-FC-XSRF-TOKEN,X-FC-KUBE-CANARY');
+    next();
+}
+app.use(allowCrossDomain);
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
@@ -16,32 +28,76 @@ app.listen(3000, () => {
   console.log('Server running on port 3000')
 })
 
-app.post('/validateSession', async (req, res) => {
-    const { appleUrl } = req.body;
-    console.log(appleUrl);
-    
-    res.send('ok');
+
+
+app.get('/.well-known/apple-developer-merchantid-domain-association.txt', (req, res) => {
+  var fs = require('fs');
+  var data = fs.readFileSync('apple-developer-merchantid-domain-association.txt');
+  res.send(data);
 });
+
+
+
+app.post("/validateSession", (req, res, next) => {
+  console.log('start validate session')
+
+  const { appleUrl } = req.body
+  console.log(appleUrl)
+
+	const request = require('request');
+	const options = {
+	    url: 'https://apple-pay-gateway.apple.com/paymentservices/paymentSession',
+      // url: appleUrl,
+      pfx: fs.readFileSync(certFile),
+	    passphrase: 'a12345678',
+	    json : {
+			      "merchantIdentifier": "merchant.insto.tap.sandbox",
+            "displayName": "INSTO Apple Pay",
+            "initiative": "messaging",
+            "initiativeContext": "https://86af-111-249-140-125.ngrok.io/server/paymentGateway"
+        }
+	};
+
+	request.post(options,
+		(http_err, http_res, http_body) => {
+			  if (http_err) {
+          console.log('response get error !!')
+          console.log(http_err)
+          console.log(http_res)
+			  	res.send(http_err)
+			  }
+        console.log('http body:')
+        console.log(http_body)
+			  // res.json(http_body)
+        res.send(http_body)
+	});
+});
+
 
 // Validate the Apple Pay session
 // app.post('/validateSession', (req, res) => {
+//   console.log('start validate session')
+//
 //   // used to send the apple certificate
 //   const httpsAgent = new https.Agent({
 //     rejectUnauthorized: false,
-//     cert: fs.readFileSync('./certificates/certificate.pem'),
-//     key: fs.readFileSync('./certificates/certificate.key')
+//     cert: fs.readFileSync('./certificates/applePayCert.pem')
 //   })
 //   // extract the appleUrl from the POST request body
+//   console.log(httpsAgent)
+//   console.log('Agent')
+//
 //   const { appleUrl } = req.body
+//   console.log(appleUrl)
 //
 //   // using AXIOS to do the POST request but any HTTP client can be used
 //   axios
 //     .post(
 //       appleUrl,
 //       {
-//         merchantIdentifier: 'merchant.test.example.com',
-//         domainName: 'integrationcko.ngrok.io',
-//         displayName: 'johnny'
+//         merchantIdentifier: 'merchant.insto.tap.sandbox',
+//         domainName: '72be-114-34-53-47.ngrok.io',
+//         displayName: 'INSTO'
 //       },
 //       { httpsAgent }
 //     )
@@ -137,4 +193,16 @@ app.post('/pay', (req, res) => {
 
 app.get('/hello', (req, res) => {
     res.send('Hi!');
+});
+
+app.post('/paymentGateway', function(req, res){
+	var rBody = req.body
+	console.log("<==========================>")
+	console.log("<=== Payment Gateway Request Body :: Request Identifier ===>")
+	console.log("<==========================>")
+	console.log(rBody.requestIdentifier)
+    res.contentType('application/json');
+    var repsonse  = { "status": "STATUS_SUCCESS" }
+	res.contentType('application/json');
+    res.send(repsonse, 200);
 });
