@@ -35,31 +35,31 @@ var applePayController = (function (uiController) {
         currencyCode: 'TWD',
         countryCode: 'TW'
       }
-    },
-    shipping: {
-      GB_region: [
-        {
-          label: 'Free Shipping',
-          amount: '0.00',
-          detail: 'Arrives in 3-5 days',
-          identifier: 'freeShipping'
-        },
-        {
-          label: 'Express Shipping',
-          amount: '5.00',
-          detail: 'Arrives in 1-2 days',
-          identifier: 'expressShipping'
-        }
-      ],
-      WORLDWIDE_region: [
-        {
-          label: 'Worldwide Standard Shipping',
-          amount: '10.00',
-          detail: 'Arrives in 5-8 days',
-          identifier: 'worldwideShipping'
-        }
-      ]
     }
+    // shipping: {
+    //   GB_region: [
+    //     {
+    //       label: 'Free Shipping',
+    //       amount: '0.00',
+    //       detail: 'Arrives in 3-5 days',
+    //       identifier: 'freeShipping'
+    //     },
+    //     {
+    //       label: 'Express Shipping',
+    //       amount: '5.00',
+    //       detail: 'Arrives in 1-2 days',
+    //       identifier: 'expressShipping'
+    //     }
+    //   ],
+    //   WORLDWIDE_region: [
+    //     {
+    //       label: 'Worldwide Standard Shipping',
+    //       amount: '10.00',
+    //       detail: 'Arrives in 5-8 days',
+    //       identifier: 'worldwideShipping'
+    //     }
+    //   ]
+    // }
   }
   /**
    * Checks if Apple Pay is possible in the current environment.
@@ -73,7 +73,7 @@ var applePayController = (function (uiController) {
    * Starts the Apple Pay session using a configuration
    */
   var _startApplePaySession = function (config) {
-    var applePaySession = new ApplePaySession(6, config)
+    var applePaySession = new ApplePaySession(3, config)
     _handleApplePayEvents(applePaySession)
     applePaySession.begin()
   }
