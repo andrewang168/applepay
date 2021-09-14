@@ -36,30 +36,30 @@ var applePayController = (function (uiController) {
         countryCode: 'TW'
       }
     }
-    // shipping: {
-    //   GB_region: [
-    //     {
-    //       label: 'Free Shipping',
-    //       amount: '0.00',
-    //       detail: 'Arrives in 3-5 days',
-    //       identifier: 'freeShipping'
-    //     },
-    //     {
-    //       label: 'Express Shipping',
-    //       amount: '5.00',
-    //       detail: 'Arrives in 1-2 days',
-    //       identifier: 'expressShipping'
-    //     }
-    //   ],
-    //   WORLDWIDE_region: [
-    //     {
-    //       label: 'Worldwide Standard Shipping',
-    //       amount: '10.00',
-    //       detail: 'Arrives in 5-8 days',
-    //       identifier: 'worldwideShipping'
-    //     }
-    //   ]
-    // }
+    shipping: {
+      TW_region: [
+        {
+          label: 'Free Shipping',
+          amount: '0.00',
+          detail: 'Arrives in 3-5 days',
+          identifier: 'freeShipping'
+        },
+        {
+          label: 'Express Shipping',
+          amount: '5.00',
+          detail: 'Arrives in 1-2 days',
+          identifier: 'expressShipping'
+        }
+      ],
+      WORLDWIDE_region: [
+        {
+          label: 'Worldwide Standard Shipping',
+          amount: '10.00',
+          detail: 'Arrives in 5-8 days',
+          identifier: 'worldwideShipping'
+        }
+      ]
+    }
   }
   /**
    * Checks if Apple Pay is possible in the current environment.
@@ -117,8 +117,8 @@ var applePayController = (function (uiController) {
    */
   var _getAvailableShippingMethods = function (region) {
     // return the shipping methods available based on region
-    if (region === 'GB') {
-      return { methods: config.shipping.GB_region }
+    if (region === 'TW') {
+      return { methods: config.shipping.TW_region }
     } else {
       return { methods: config.shipping.WORLDWIDE_region }
     }
@@ -268,19 +268,19 @@ var applePayController = (function (uiController) {
             'supportsDebit'
           ],
           supportedNetworks: config.payments.acceptedCardSchemes,
-          // shippingType: 'shipping',
-          // requiredBillingContactFields: [
-          //   'postalAddress',
-          //   'name',
-          //   'phone',
-          //   'email'
-          // ],
-          // requiredShippingContactFields: [
-          //   'postalAddress',
-          //   'name',
-          //   'phone',
-          //   'email'
-          // ],
+          shippingType: 'shipping',
+          requiredBillingContactFields: [
+            'postalAddress',
+            'name',
+            'phone',
+            'email'
+          ],
+          requiredShippingContactFields: [
+            'postalAddress',
+            'name',
+            'phone',
+            'email'
+          ],
           total: {
             label: config.shop.shop_name,
             amount: config.shop.product_price,
