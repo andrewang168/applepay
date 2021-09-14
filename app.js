@@ -145,7 +145,7 @@ var applePayController = (function (uiController) {
         }
       )
       .then(function (response) {
-        callback(response.data)
+        callback(response)
       })
   }
 
