@@ -29,7 +29,7 @@ var applePayController = (function (uiController) {
       acceptedCardSchemes: ['amex', 'masterCard', 'maestro', 'visa', 'mada']
     },
     shop: {
-      product_price: 198.00,
+      product_price: 199.00,
       shop_name: 'INSTO Store',
       shop_localisation: {
         currencyCode: 'TWD',
