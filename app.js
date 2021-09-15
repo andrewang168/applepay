@@ -36,30 +36,30 @@ var applePayController = (function (uiController) {
         countryCode: 'TW'
       }
     }
-    // shipping: {
-    //   GB_region: [
-    //     {
-    //       label: 'Free Shipping',
-    //       amount: '0.00',
-    //       detail: 'Arrives in 3-5 days',
-    //       identifier: 'freeShipping'
-    //     },
-    //     {
-    //       label: 'Express Shipping',
-    //       amount: '5.00',
-    //       detail: 'Arrives in 1-2 days',
-    //       identifier: 'expressShipping'
-    //     }
-    //   ],
-    //   WORLDWIDE_region: [
-    //     {
-    //       label: 'Worldwide Standard Shipping',
-    //       amount: '10.00',
-    //       detail: 'Arrives in 5-8 days',
-    //       identifier: 'worldwideShipping'
-    //     }
-    //   ]
-    // }
+    shipping: {
+      GB_region: [
+        {
+          label: 'Free Shipping',
+          amount: '0.00',
+          detail: 'Arrives in 3-5 days',
+          identifier: 'freeShipping'
+        },
+        {
+          label: 'Express Shipping',
+          amount: '5.00',
+          detail: 'Arrives in 1-2 days',
+          identifier: 'expressShipping'
+        }
+      ],
+      WORLDWIDE_region: [
+        {
+          label: 'Worldwide Standard Shipping',
+          amount: '10.00',
+          detail: 'Arrives in 5-8 days',
+          identifier: 'worldwideShipping'
+        }
+      ]
+    }
   }
   /**
    * Checks if Apple Pay is possible in the current environment.
