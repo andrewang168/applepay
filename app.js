@@ -29,7 +29,7 @@ var applePayController = (function (uiController) {
       acceptedCardSchemes: ['amex', 'masterCard', 'maestro', 'visa', 'mada']
     },
     shop: {
-      product_price: 199.00,
+      product_price: 198.00,
       shop_name: 'INSTO Store',
       shop_localisation: {
         currencyCode: 'TWD',
@@ -73,7 +73,7 @@ var applePayController = (function (uiController) {
    * Starts the Apple Pay session using a configuration
    */
   var _startApplePaySession = function (config) {
-    var applePaySession = new ApplePaySession(1, config)
+    var applePaySession = new ApplePaySession(3, config)
     _handleApplePayEvents(applePaySession)
     applePaySession.begin()
   }
@@ -149,7 +149,7 @@ var applePayController = (function (uiController) {
       })
   }
 
-  /**
+  /**s
    * This is the main method of the script, since here we handle all the Apple Pay
    * events. Here you are able to populate your shipping methods, react to  shipping methods
    * changes, and many other interaction that the user has with the Apple Pay pup-up.
@@ -162,8 +162,7 @@ var applePayController = (function (uiController) {
     // Apple Pay Session from your Back-End
     appleSession.onvalidatemerchant = function (event) {
       _validateApplePaySession(event.validationURL, function (merchantSession) {
-        appleSession.completeMerchantValidation(JSON.parse(merchantSession))
-        console.log(merchantSession)
+        appleSession.completeMerchantValidation(merchantSession.json())
       })
     }
 
