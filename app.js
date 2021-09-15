@@ -35,7 +35,7 @@ var applePayController = (function (uiController) {
         currencyCode: 'TWD',
         countryCode: 'TW'
       }
-    }
+    },
     shipping: {
       GB_region: [
         {
