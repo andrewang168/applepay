@@ -163,6 +163,7 @@ var applePayController = (function (uiController) {
     appleSession.onvalidatemerchant = function (event) {
       _validateApplePaySession(event.validationURL, function (merchantSession) {
         appleSession.completeMerchantValidation(merchantSession)
+        console.log(merchantSession)
       })
     }
 
