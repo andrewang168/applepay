@@ -102,7 +102,7 @@ var applePayController = (function (uiController) {
         }
       )
       .then(function (response) {
-        callback(response.data.json())
+        callback(response.data)
       })
   }
 
