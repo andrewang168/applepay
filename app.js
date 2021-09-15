@@ -98,7 +98,7 @@ var applePayController = (function (uiController) {
           appleUrl
         },
         {
-          headers: { 'Access-Control-Allow-Origin': '*' }
+          headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8' }
         }
       )
       .then(function (response) {
@@ -162,7 +162,7 @@ var applePayController = (function (uiController) {
     // Apple Pay Session from your Back-End
     appleSession.onvalidatemerchant = function (event) {
       _validateApplePaySession(event.validationURL, function (merchantSession) {
-        appleSession.completeMerchantValidation(merchantSession.object)
+        appleSession.completeMerchantValidation(merchantSession)
       })
     }
 
