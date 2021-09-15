@@ -73,7 +73,7 @@ var applePayController = (function (uiController) {
    * Starts the Apple Pay session using a configuration
    */
   var _startApplePaySession = function (config) {
-    var applePaySession = new ApplePaySession(3, config)
+    var applePaySession = new ApplePaySession(1, config)
     _handleApplePayEvents(applePaySession)
     applePaySession.begin()
   }
@@ -162,7 +162,7 @@ var applePayController = (function (uiController) {
     // Apple Pay Session from your Back-End
     appleSession.onvalidatemerchant = function (event) {
       _validateApplePaySession(event.validationURL, function (merchantSession) {
-        appleSession.completeMerchantValidation(JSON.parse(merchantSession))
+        appleSession.completeMerchantValidation(merchantSession)
       })
     }
 
@@ -259,34 +259,40 @@ var applePayController = (function (uiController) {
       .getElementById(uiController.DOMStrings.appleButton)
       .addEventListener('click', function () {
         _startApplePaySession({
-          currencyCode: config.shop.shop_localisation.currencyCode,
-          countryCode: config.shop.shop_localisation.countryCode,
-          merchantCapabilities: [
-            'supports3DS',
-            'supportsEMV',
-            'supportsCredit',
-            'supportsDebit'
-          ],
-          supportedNetworks: config.payments.acceptedCardSchemes,
-          // shippingType: 'shipping',
-          // requiredBillingContactFields: [
-          //   'postalAddress',
-          //   'name',
-          //   'phone',
-          //   'email'
-          // ],
-          // requiredShippingContactFields: [
-          //   'postalAddress',
-          //   'name',
-          //   'phone',
-          //   'email'
-          // ],
-          total: {
-            label: config.shop.shop_name,
-            amount: config.shop.product_price,
-            type: 'final'
-          }
-        })
+      		countryCode: 'US',
+      		currencyCode: 'USD',
+      		shippingMethods: [
+      			{
+      				label: 'Free Shipping',
+      				amount: '0.00',
+      				identifier: 'free',
+      				detail: 'Delivers in five business days',
+      			},
+      			{
+      				label: 'Express Shipping',
+      				amount: '5.00',
+      				identifier: 'express',
+      				detail: 'Delivers in two business days',
+      			},
+      		],
+
+      		lineItems: [
+      			{
+      				label: 'Shipping',
+      				amount: '0.00',
+      			}
+      		],
+
+      		total: {
+      			label: 'Apple Pay Example',
+      			amount: '8.99',
+      		},
+
+      		supportedNetworks:[ 'amex', 'discover', 'masterCard', 'visa'],
+      		merchantCapabilities: [ 'supports3DS' ],
+
+      		requiredShippingContactFields: [ 'postalAddress', 'email' ],
+      	})
       })
   }
 

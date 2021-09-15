@@ -46,15 +46,15 @@ app.post("/validateSession", (req, res, next) => {
 
 	const request = require('request');
 	const options = {
-	    url: 'https://apple-pay-gateway.apple.com/paymentservices/paymentSession',
-      // url: appleUrl,
+	    // url: 'https://apple-pay-gateway.apple.com/paymentservices/paymentSession',
+      url: appleUrl,
       pfx: fs.readFileSync(certFile),
 	    passphrase: 'a12345678',
 	    json : {
 			      "merchantIdentifier": "merchant.insto.tap.sandbox",
             "displayName": "INSTO Apple Pay",
-            "initiative": "messaging",
-            "initiativeContext": "https://86af-111-249-140-125.ngrok.io/server/paymentGateway"
+            "initiative": "web",
+            "initiativeContext": "86af-111-249-140-125.ngrok.io"
         }
 	};
 
@@ -68,8 +68,8 @@ app.post("/validateSession", (req, res, next) => {
 			  }
         console.log('http body:')
         console.log(http_body)
-			  // res.json(http_body)
-        res.send(http_body)
+			  res.json(http_body)
+        // res.send(http_body)
 	});
 });
 
