@@ -73,7 +73,7 @@ var applePayController = (function (uiController) {
    * Starts the Apple Pay session using a configuration
    */
   var _startApplePaySession = function (config) {
-    var applePaySession = new ApplePaySession(3, config)
+    var applePaySession = new ApplePaySession(1, config)
     _handleApplePayEvents(applePaySession)
     applePaySession.begin()
   }
