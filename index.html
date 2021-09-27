@@ -22,7 +22,8 @@
     }
   </style>
   <script>
-    const NGROK_HTTPS_HOST = 'https://d68d-114-34-53-47.ngrok.io';
+    // const NGROK_HTTPS_HOST = 'https://d68d-114-34-53-47.ngrok.io';
+    const NGROK_HTTPS_HOST = 'https://insto-applepay-demo.herokuapp.com';
     const MERCHANT_IDENTIFIER = 'merchant.insto.tap.sandbox';
     let session;
 
@@ -55,7 +56,7 @@
 
       session = new ApplePaySession(2, request);
       session.onvalidatemerchant = ({ validationURL }) => {
-        fetch('https://d68d-114-34-53-47.ngrok.io/validateSession')
+        fetch(`${NGROK_HTTPS_HOST}/validateSession/`)
         .then(res => res.json())
         .then(data => {
           session.completeMerchantValidation(data);
