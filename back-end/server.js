@@ -54,7 +54,7 @@ app.post("/validateSession", (req, res, next) => {
 			      "merchantIdentifier": "merchant.insto.tap.sandbox",
             "displayName": "INSTO Store",
             "initiative": "web",
-            "initiativeContext": "localhost"
+            "initiativeContext": "d68d-114-34-53-47.ngrok.io"
         }
 	};
 

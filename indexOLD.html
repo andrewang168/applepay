@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<!-- At a certain point we need to do 2 HTTP calls so I added axios here -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+	<div id="ckoApplePay" class="apple-pay-button" lang=en></div>
+
+        <!-- Adding an error message to show in case Apple Pay is not possible -->
+	<p style="display:none" id="ckoApplePayError">此裝置不支援 Apple Pay</p>
+
+	<script src="app.js"></script>
+
+	<!-- <script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script> -->
+
+</body>
+
+</html>
