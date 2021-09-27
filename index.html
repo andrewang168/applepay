@@ -56,8 +56,7 @@
 
       session = new ApplePaySession(2, request);
       session.onvalidatemerchant = ({ validationURL }) => {
-        // fetch(`${NGROK_HTTPS_HOST}/validateSession/`)
-        fetch('https://warm-snail-65.loca.lt/merchant-session/new?validationURL=https://apple-pay-gateway.apple.com/paymentservices/paymentSession&domain=almatt.github.io')
+        fetch(`${NGROK_HTTPS_HOST}/validateSession/`)
         .then(res => res.json())
         .then(data => {
           session.completeMerchantValidation(data);
