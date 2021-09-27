@@ -9,6 +9,7 @@ const path = require('path')
 const certFile = path.resolve('./certificates/Certificates.p12')
 const cors = require('cors')
 const app = express()
+const PORT = process.env.PORT || 5000;
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -24,7 +25,7 @@ app.use(
   })
 )
 app.use(cors())
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log('Server running on port 3000')
 })
 
