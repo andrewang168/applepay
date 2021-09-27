@@ -259,8 +259,8 @@ var applePayController = (function (uiController) {
       .getElementById(uiController.DOMStrings.appleButton)
       .addEventListener('click', function () {
         _startApplePaySession({
-      		countryCode: 'US',
-      		currencyCode: 'USD',
+      		countryCode: 'TW',
+      		currencyCode: 'TWD',
       		shippingMethods: [
       			{
       				label: 'Free Shipping',
