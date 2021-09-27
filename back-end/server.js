@@ -37,41 +37,41 @@ app.get('/.well-known/apple-developer-merchantid-domain-association.txt', (req, 
 });
 
 
-app.post("/validateSession", (req, res, next) => {
-  console.log('start validate session')
+// app.post("/validateSession", (req, res, next) => {
+//   console.log('start validate session')
+//
+//   const { appleUrl } = req.body
+//   console.log(appleUrl)
+//
+// 	const request = require('request');
+// 	const options = {
+// 	    // url: 'https://apple-pay-gateway.apple.com/paymentservices/paymentSession',
+//       url: appleUrl,
+//       pfx: fs.readFileSync(certFile),
+// 	    passphrase: 'a12345678',
+// 	    json : {
+// 			      "merchantIdentifier": "merchant.insto.tap.sandbox",
+//             "displayName": "INSTO Store",
+//             "initiative": "web",
+//             "initiativeContext": "d68d-114-34-53-47.ngrok.io"
+//         }
+// 	};
 
-  const { appleUrl } = req.body
-  console.log(appleUrl)
-
-	const request = require('request');
-	const options = {
-	    // url: 'https://apple-pay-gateway.apple.com/paymentservices/paymentSession',
-      url: appleUrl,
-      pfx: fs.readFileSync(certFile),
-	    passphrase: 'a12345678',
-	    json : {
-			      "merchantIdentifier": "merchant.insto.tap.sandbox",
-            "displayName": "INSTO Store",
-            "initiative": "web",
-            "initiativeContext": "d68d-114-34-53-47.ngrok.io"
-        }
-	};
-
-  // app.get('/validateSession', function(req, res) {
-  // var url = req.query.validationURL || 'https://apple-pay-gateway-cert.apple.com/paymentservices/startSession';
-  // var options = {
-  //   method: 'POST',
-  //   url: url,
-  //   pfx: fs.readFileSync(certFile),
-  //   passphrase: 'a12345678',
-  //   body: {
-  //     merchantIdentifier: 'merchant.insto.tap.sandbox',
-  //     displayName: 'Apple Pay demo',
-  //     initiative: 'web',
-  //     initiativeContext: 'd68d-114-34-53-47.ngrok.io'
-  //   },
-  //   json: true
-  // };
+  app.get('/validateSession', function(req, res) {
+  var url = req.query.validationURL || 'https://apple-pay-gateway-cert.apple.com/paymentservices/startSession';
+  var options = {
+    method: 'POST',
+    url: url,
+    pfx: fs.readFileSync(certFile),
+    passphrase: 'a12345678',
+    body: {
+      merchantIdentifier: 'merchant.insto.tap.sandbox',
+      displayName: 'Apple Pay demo',
+      initiative: 'web',
+      initiativeContext: 'd68d-114-34-53-47.ngrok.io'
+    },
+    json: true
+  };
 
   // request.post(options, function(error, response, body) {
   //   if (error) throw new Error(error)
@@ -91,8 +91,15 @@ app.post("/validateSession", (req, res, next) => {
 			  }
         console.log('http body:')
         console.log(http_body)
-			  res.json(http_body)
-        // res.send(http_body)
+
+        // http_body["status"] = 0;
+        // http_body["msg"] = 'Success';
+        // console.log('final body:')
+        // console.log(http_body)
+
+
+			  // res.json(http_body)
+        res.send(http_body)
 	});
 
 });
