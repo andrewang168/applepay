@@ -52,9 +52,9 @@ app.post("/validateSession", (req, res, next) => {
 	    passphrase: 'a12345678',
 	    json : {
 			      "merchantIdentifier": "merchant.insto.tap.sandbox",
-            "displayName": "INSTO Apple Pay",
+            "displayName": "INSTO Store",
             "initiative": "web",
-            "initiativeContext": "86af-111-249-140-125.ngrok.io"
+            "initiativeContext": "d68d-114-34-53-47.ngrok.io"
         }
 	};
 

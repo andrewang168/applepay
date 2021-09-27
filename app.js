@@ -19,7 +19,7 @@ var applePayUiController = (function () {
 
 var applePayController = (function (uiController) {
   // var BACKEND_URL_VALIDATE_SESSION = 'https://{your backend URL}/validateSession'
-  var BACKEND_URL_VALIDATE_SESSION = 'https://86af-111-249-140-125.ngrok.io/validateSession'
+  var BACKEND_URL_VALIDATE_SESSION = 'https://d68d-114-34-53-47.ngrok.io/validateSession'
 
   var BACKEND_URL_PAY = 'https://{your backend URL}/pay'
 
@@ -285,7 +285,7 @@ var applePayController = (function (uiController) {
 
       		total: {
       			label: 'Apple Pay Example',
-      			amount: '8.99',
+      			amount: '1.99',
       		},
 
       		supportedNetworks:[ 'amex', 'discover', 'masterCard', 'visa'],
