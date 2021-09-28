@@ -54,12 +54,15 @@
         }
       }
 
-      session = new ApplePaySession(6, request);
+      session = new ApplePaySession(1, request);
       session.onvalidatemerchant = ({ validationURL }) => {
         fetch(`${NGROK_HTTPS_HOST}/merchant-session/new/?validationURL=` + validationURL)
         .then(res => res.json())
         .then(data => {
           session.completeMerchantValidation(data);
+        })
+        .catch(err => {
+          console.error("Error fetching merchant session", err);
         });
       }
 
